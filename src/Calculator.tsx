@@ -10,13 +10,29 @@ const Calculator = () => {
     Effect: '0',
     Range: '0',
     Speed: '0',
-    Duration: '0'
+    Duration: '0',
+    "Area Effect": '0',
+    "Change Target": '0',
+    Charges: '0',
+    Focused: '0',
+    "Multiple Targets": '0',
+    "Variable Duration": '0',
+    "Variable Effect": '0',
+    "Variable Move": '0',
+    Alterants: '0'
   })
 
   const [reductions, setReductions] = useState({
     "Cast Time": '0',
+    Community: '0',
     Components: '0',
-    Incantation: '0'
+    Concentration: '0',
+    Countenance: '0',
+    Feedback: '0',
+    Gesture: '0',
+    Incantation: '0',
+    "Unreal Effect": '0',
+    Conditions: '0'
   })
 
   const handleChangeCosts = (key: string) => (newValue: string) => {
