@@ -53,10 +53,10 @@ const Calculator = () => {
     const calculateTotals = () => {
       const totalCost = Object.values(costs).reduce((total, cost) => total += parseInt(cost), 0)
       const totalReductions = Object.values(reductions).reduce((total, reduction) => total += parseInt(reduction), 0)
-  
+
       const spellValue = Math.max(0, totalCost - totalReductions)
       const spellDifficulty = Math.ceil(spellValue / 2)
-  
+
       setSpellValue(spellValue)
       setSpellDifficulty(spellDifficulty)
     }
@@ -65,22 +65,24 @@ const Calculator = () => {
   }, [costs, reductions])
 
   return (
-    <View style={styles.container}>
-      <Text style={{ textAlign: 'center' }}>Spell Difficulty Calculator</Text>
-      <Text style={styles.sectionLabel}>Costs</Text>
-      {
-        Object.entries(costs).map(([key, value]) => 
-          <Input label={key} value={value} setValue={handleChangeCosts(key)}/>
-        )
-      }
-      <Text style={styles.sectionLabel}>Cost Reductions</Text>
-      {
-        Object.entries(reductions).map(([key, value]) =>
-          <Input label={key} value={value} setValue={handleChangeReductions(key)}/>
-        )
-      }
-      <Text style={{...styles.sectionLabel, textAlign: 'center'}}>Spell Total: {spellValue}</Text>
-      <Text style={{...styles.sectionLabel, textAlign: 'center'}}>Spell Difficulty: {spellDifficulty}</Text>
+    <View style={styles.wrapper}>
+      <View style={styles.container}>
+        <Text style={{ textAlign: 'center' }}>Spell Difficulty Calculator</Text>
+        <Text style={styles.sectionLabel}>Costs</Text>
+        {
+          Object.entries(costs).map(([key, value]) =>
+            <Input label={key} value={value} setValue={handleChangeCosts(key)} />
+          )
+        }
+        <Text style={styles.sectionLabel}>Cost Reductions</Text>
+        {
+          Object.entries(reductions).map(([key, value]) =>
+            <Input label={key} value={value} setValue={handleChangeReductions(key)} />
+          )
+        }
+        <Text style={{ ...styles.sectionLabel, textAlign: 'center' }}>Spell Total: {spellValue}</Text>
+        <Text style={{ ...styles.sectionLabel, textAlign: 'center' }}>Spell Difficulty: {spellDifficulty}</Text>
+      </View>
     </View>
   )
 }
@@ -88,6 +90,14 @@ const Calculator = () => {
 export default Calculator
 
 const styles = StyleSheet.create({
+  wrapper: {
+    backgroundColor: '#26408B',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: '40px',
+    paddingBottom: '40px'
+  },
   container: {
     display: 'flex',
     padding: '16px',

@@ -1,21 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
 import Calculator from './src/Calculator';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator()
 
 export default function App() {
   return (
-    <View style={styles.wrapper}>
-      <Calculator />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Calculator} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  wrapper: {
-    backgroundColor: '#26408B',
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: '40px',
-    paddingBottom: '40px'
-  }
-})
