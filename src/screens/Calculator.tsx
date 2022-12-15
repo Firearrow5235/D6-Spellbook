@@ -4,14 +4,6 @@ import Input from '../components/Input'
 import { containers } from '../styles/containers'
 
 const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    padding: '16px',
-    borderRadius: 8,
-    flexDirection: 'column',
-    backgroundColor: '#fff',
-    width: '300px',
-  },
   sectionLabel: { paddingTop: '4px', paddingBottom: '4px', fontWeight: 'bold' }
 })
 
@@ -79,7 +71,7 @@ const Calculator = () => {
 
   return (
     <View style={containers.page}>
-      <View style={styles.container}>
+      <View style={containers.content}>
         <Text style={{ textAlign: 'center' }}>Spell Difficulty Calculator</Text>
         <Text style={styles.sectionLabel}>Costs</Text>
         {
