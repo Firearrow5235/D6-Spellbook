@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Calculator from './src/Calculator';
 
@@ -15,6 +14,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#26408B',
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    paddingTop: '40px',
+    paddingBottom: '40px'
   }
 })
