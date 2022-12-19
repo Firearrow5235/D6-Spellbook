@@ -3,8 +3,9 @@ import Calculator from './src/screens/Calculator';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Spellbooks from './src/screens/Spellbooks';
+import { RouteParams } from './types';
 
-const Stack = createStackNavigator()
+const Stack = createStackNavigator<RouteParams>()
 
 export default function App() {
   return (

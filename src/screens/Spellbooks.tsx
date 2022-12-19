@@ -1,5 +1,8 @@
-import { StyleSheet, View } from "react-native"
+import { NavigationProp, TypedNavigator } from "@react-navigation/native"
+import { Button, StyleSheet, View } from "react-native"
 import { containers } from "../styles/containers"
+import { ScreenProps } from "../../types"
+import { FC } from "react"
 
 const styles = StyleSheet.create({
   entry: {
@@ -8,7 +11,8 @@ const styles = StyleSheet.create({
   }
 })
 
-const Spellbooks = () => {
+const Spellbooks: FC<ScreenProps> = ({navigation}) => {
+
   return (
     <View style={containers.page}>
       <View style={containers.content}>
@@ -16,7 +20,7 @@ const Spellbooks = () => {
           New Spellbook
         </View>
         <View style={styles.entry}>
-          Add Spellbook
+          <Button title='Add Spellbook' onPress={() => {navigation.navigate('Spell Calculator')}} />
         </View>
       </View>
     </View>
