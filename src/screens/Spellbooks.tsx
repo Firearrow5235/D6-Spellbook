@@ -1,8 +1,11 @@
 import { NavigationProp, TypedNavigator } from "@react-navigation/native"
 import { Button, StyleSheet, View } from "react-native"
 import { containers } from "../styles/containers"
-import { ScreenProps } from "../../types"
+import { RouteParams } from "../../types"
 import { FC } from "react"
+import { StackScreenProps } from "@react-navigation/stack"
+
+type SpellbooksProps = StackScreenProps<RouteParams, 'Spellbooks'>
 
 const styles = StyleSheet.create({
   entry: {
@@ -11,16 +14,13 @@ const styles = StyleSheet.create({
   }
 })
 
-const Spellbooks: FC<ScreenProps> = ({navigation}) => {
+const Spellbooks: FC<SpellbooksProps> = ({navigation}) => {
 
   return (
     <View style={containers.page}>
       <View style={containers.content}>
         <View style={styles.entry}>
-          New Spellbook
-        </View>
-        <View style={styles.entry}>
-          <Button title='Add Spellbook' onPress={() => {navigation.navigate('Spell Calculator')}} />
+          <Button title='New Spellbook' onPress={() => {navigation.navigate('Create a Spellbook')}} />
         </View>
       </View>
     </View>

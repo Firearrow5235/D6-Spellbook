@@ -1,13 +1,17 @@
-import { useState, useEffect } from 'react'
+import { StackScreenProps } from '@react-navigation/stack'
+import { FC, useState, useEffect } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { RouteParams } from '../../types'
 import Input from '../components/Input'
 import { containers } from '../styles/containers'
+
+type CalculatorProps = StackScreenProps<RouteParams, 'Spell Calculator'>
 
 const styles = StyleSheet.create({
   sectionLabel: { paddingTop: '4px', paddingBottom: '4px', fontWeight: 'bold' }
 })
 
-const Calculator = () => {
+const Calculator: FC<CalculatorProps> = () => {
   const [spellValue, setSpellValue] = useState(0)
   const [spellDifficulty, setSpellDifficulty] = useState(0)
 
@@ -76,13 +80,13 @@ const Calculator = () => {
         <Text style={styles.sectionLabel}>Costs</Text>
         {
           Object.entries(costs).map(([key, value]) =>
-            <Input label={key} value={value} setValue={handleChangeCosts(key)} />
+            <Input label={key} value={value} setValue={handleChangeCosts(key)} keyboardType='numeric' numbersOnly />
           )
         }
         <Text style={styles.sectionLabel}>Cost Reductions</Text>
         {
           Object.entries(reductions).map(([key, value]) =>
-            <Input label={key} value={value} setValue={handleChangeReductions(key)} />
+            <Input label={key} value={value} setValue={handleChangeReductions(key)} keyboardType='numeric' numbersOnly />
           )
         }
         <Text style={{ ...styles.sectionLabel, textAlign: 'center' }}>Spell Total: {spellValue}</Text>

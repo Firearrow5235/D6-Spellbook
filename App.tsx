@@ -4,14 +4,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Spellbooks from './src/screens/Spellbooks';
 import { RouteParams } from './types';
+import Spellbook from './src/screens/Spellbook';
 
 const Stack = createStackNavigator<RouteParams>()
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName='Spellbooks'>
         <Stack.Screen name="Spellbooks" component={Spellbooks} options={{headerShown: false}}/>
+        <Stack.Screen name="Create a Spellbook" component={Spellbook} />
         <Stack.Screen name="Spell Calculator" component={Calculator} />
       </Stack.Navigator>
     </NavigationContainer>
