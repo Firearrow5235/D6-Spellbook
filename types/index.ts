@@ -5,3 +5,9 @@ export type RouteParams = {
   'Create a Spellbook': undefined,
   'Spell Calculator': undefined
 }
+
+export type Spellbook = {
+  name: string
+  character: string
+  coreAttribute: string
+}

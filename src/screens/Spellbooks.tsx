@@ -1,9 +1,9 @@
-import { NavigationProp, TypedNavigator } from "@react-navigation/native"
 import { Button, StyleSheet, View } from "react-native"
 import { containers } from "../styles/containers"
 import { RouteParams } from "../../types"
-import { FC } from "react"
+import { FC, useState } from "react"
 import { StackScreenProps } from "@react-navigation/stack"
+import SpellbookEntries from "../components/SpellbookEntries"
 
 type SpellbooksProps = StackScreenProps<RouteParams, 'Spellbooks'>
 
@@ -19,6 +19,7 @@ const Spellbooks: FC<SpellbooksProps> = ({navigation}) => {
   return (
     <View style={containers.page}>
       <View style={containers.content}>
+        <SpellbookEntries />
         <View style={styles.entry}>
           <Button title='New Spellbook' onPress={() => {navigation.navigate('Create a Spellbook')}} />
         </View>
