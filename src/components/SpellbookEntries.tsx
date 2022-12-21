@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Text, View } from 'react-native'
 import { useSpellbooks } from '../hooks/useSpellbooks'
 import SpellbookEntry from './SpellbookEntry'
