@@ -1,33 +1,33 @@
-import { FC } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Spellbook } from "../../types";
+import { FC } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import { Spellbook } from '../../types'
 
 type SpellbookEntryProps = {
-  spellbook: Spellbook;
-};
+  spellbook: Spellbook
+}
 
 const styles = StyleSheet.create({
   container: {
-    padding: "8px",
-    backgroundColor: "#dddddd",
+    padding: '8px',
+    backgroundColor: '#dddddd',
     borderRadius: 4,
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "nowrap",
-    marginBottom: "8px",
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    marginBottom: '8px',
   },
   valueWrapper: {
     flex: 1,
-    flexDirection: "column",
+    flexDirection: 'column',
   },
   label: {
-    color: "#999",
+    color: '#999',
     fontSize: 10,
   },
   value: {
-    color: "#222",
+    color: '#222',
   },
-});
+})
 
 const SpellbookEntry: FC<SpellbookEntryProps> = ({ spellbook }) => {
   return (
@@ -41,7 +41,7 @@ const SpellbookEntry: FC<SpellbookEntryProps> = ({ spellbook }) => {
         <Text style={styles.value}>{spellbook.character}</Text>
       </View>
     </View>
-  );
-};
+  )
+}
 
-export default SpellbookEntry;
+export default SpellbookEntry

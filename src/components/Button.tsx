@@ -1,18 +1,18 @@
-import { FC } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { FC } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 
 type ButtonProps = {
-  label: string;
-  textColor: string;
-  backgroundColor: string;
-  onClick: () => void;
-};
+  label: string
+  textColor: string
+  backgroundColor: string
+  onClick: () => void
+}
 
 const styles = StyleSheet.create({
   wrapper: {
-    padding: "8px",
+    padding: '8px',
   },
-});
+})
 
 const Button: FC<ButtonProps> = ({
   label,
@@ -24,7 +24,7 @@ const Button: FC<ButtonProps> = ({
     <View style={{ ...styles.wrapper }}>
       <Text>{label}</Text>
     </View>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button
