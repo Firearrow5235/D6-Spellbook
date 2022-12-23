@@ -47,8 +47,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexWrap: 'nowrap',
-    paddingTop: '4px',
-    paddingBottom: '4px'
+    paddingBottom: '8px'
   },
   label: {
     flex: 1,
