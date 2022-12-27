@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native'
 
 export const containers = StyleSheet.create({
   page: {
@@ -8,7 +8,7 @@ export const containers = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: '40px',
     paddingBottom: '40px',
-    color: 'white'
+    color: 'white',
   },
   content: {
     display: 'flex',
@@ -18,4 +18,4 @@ export const containers = StyleSheet.create({
     backgroundColor: '#fff',
     width: '300px',
   },
-});
+})

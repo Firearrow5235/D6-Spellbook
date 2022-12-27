@@ -1,6 +1,6 @@
-import { FC } from "react"
-import { StyleSheet, Text, View } from "react-native"
-import { Spellbook } from "../../types"
+import { FC } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import { Spellbook } from '../../types'
 
 type SpellbookEntryProps = {
   spellbook: Spellbook
@@ -14,22 +14,22 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'nowrap',
-    marginBottom: '8px'
+    marginBottom: '8px',
   },
   valueWrapper: {
     flex: 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   label: {
     color: '#999',
-    fontSize: 10
+    fontSize: 10,
   },
   value: {
-    color: '#222'
-  }
+    color: '#222',
+  },
 })
 
-const SpellbookEntry: FC<SpellbookEntryProps> = ({spellbook}) => {
+const SpellbookEntry: FC<SpellbookEntryProps> = ({ spellbook }) => {
   return (
     <View style={styles.container}>
       <View style={styles.valueWrapper}>

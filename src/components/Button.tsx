@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { StyleSheet, Text, View } from "react-native"
+import { StyleSheet, Text, View } from 'react-native'
 
 type ButtonProps = {
   label: string
@@ -10,13 +10,18 @@ type ButtonProps = {
 
 const styles = StyleSheet.create({
   wrapper: {
-    padding: '8px'
-  }
+    padding: '8px',
+  },
 })
 
-const Button: FC<ButtonProps> = ({label, textColor, backgroundColor, onClick}) => {
+const Button: FC<ButtonProps> = ({
+  label,
+  textColor,
+  backgroundColor,
+  onClick,
+}) => {
   return (
-    <View style={{...styles.wrapper, }}>
+    <View style={{ ...styles.wrapper }}>
       <Text>{label}</Text>
     </View>
   )
