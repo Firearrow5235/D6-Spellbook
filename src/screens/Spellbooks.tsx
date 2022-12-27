@@ -1,7 +1,7 @@
 import { Button, StyleSheet, View } from 'react-native'
 import { containers } from '../styles/containers'
 import { RouteParams } from '../../types'
-import { FC, useState } from 'react'
+import React, { FC } from 'react'
 import { StackScreenProps } from '@react-navigation/stack'
 import SpellbookEntries from '../components/SpellbookEntries'
 

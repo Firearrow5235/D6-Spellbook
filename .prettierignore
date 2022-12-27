@@ -1,3 +1,4 @@
-#ignore built files
-/.expo
-/assets
+.expo
+assets
+node_modules
+**/*.js
