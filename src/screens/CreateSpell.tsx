@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
-import { View } from 'react-native'
+import { StackScreenProps } from '@react-navigation/stack'
+import React, { FC, useState } from 'react'
+import { Button, View } from 'react-native'
+import { RouteParams } from '../../types'
 import Input from '../components/Input'
 import { containers } from '../styles/containers'
 
-const CreateSpell = () => {
+type CreateSpellProps = StackScreenProps<RouteParams, 'Create a spell'>
+
+const CreateSpell: FC<CreateSpellProps> = () => {
   const [newSpell, setNewSpell] = useState({
     Name: '',
     Skill: '',
@@ -34,6 +38,10 @@ const CreateSpell = () => {
             labelHidden
           />
         ))}
+        <View style={{ marginBottom: '8px' }}>
+          <Button title="Use Calculator" onPress={() => null} />
+        </View>
+        <Button title="Create" onPress={() => null} />
       </View>
     </View>
   )
