@@ -8,8 +8,6 @@ export const useSpellbooks = (): [spellbooks: Spellbook[] | null] => {
   const getSpellbooks = async (): Promise<void> => {
     const registryJson = await AsyncStorage.getItem('Spellbooks')
 
-    console.log(registryJson)
-
     if (registryJson != null) {
       const registry: string[] = JSON.parse(registryJson)
       const spellbooks = await Promise.all(
@@ -17,7 +15,6 @@ export const useSpellbooks = (): [spellbooks: Spellbook[] | null] => {
           const spellbookJson = await AsyncStorage.getItem(entry)
           if (spellbookJson != null) {
             const spellbook = JSON.parse(spellbookJson) as Spellbook
-            console.log(spellbook)
             return spellbook
           } else {
             return null

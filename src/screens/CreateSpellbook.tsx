@@ -40,6 +40,7 @@ const CreateSpellbook: FC<SpellbookProps> = ({ navigation }) => {
       name: spellbook.Name,
       character: spellbook.Character,
       coreAttribute: spellbook['Core Attribute'],
+      spells: [],
     } as Spellbook)
     const spellbooksString = JSON.stringify([...spellbooks, id])
 

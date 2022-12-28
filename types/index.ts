@@ -11,6 +11,7 @@ export type Spellbook = {
   name: string
   character: string
   coreAttribute: string
+  spells: string[]
 }
 
 export type Spell = {
