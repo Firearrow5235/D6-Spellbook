@@ -1,6 +1,6 @@
 import { Button, StyleSheet, View } from 'react-native'
 import { containers } from '../styles/containers'
-import { RouteParams } from '../../types'
+import { RouteParams, Spellbook } from '../../types'
 import React, { FC } from 'react'
 import { StackScreenProps } from '@react-navigation/stack'
 import SpellbookEntries from '../components/SpellbookEntries'
@@ -15,10 +15,14 @@ const styles = StyleSheet.create({
 })
 
 const Spellbooks: FC<SpellbooksProps> = ({ navigation }) => {
+  const openSpellbook = (spellbook: Spellbook) => () => {
+    navigation.navigate('Spellbook', { spellbook: spellbook })
+  }
+
   return (
     <View style={containers.page}>
       <View style={containers.content}>
-        <SpellbookEntries />
+        <SpellbookEntries openSpellbook={openSpellbook} />
         <View style={styles.entry}>
           <Button
             title="New Spellbook"
