@@ -17,7 +17,9 @@ const Spellbook: FC<SpellbookProps> = ({ route, navigation }) => {
           <Button
             title="New Spell"
             onPress={() => {
-              navigation.navigate('Create a spell')
+              navigation.navigate('Create a spell', {
+                spellbook: route.params.spellbook,
+              })
             }}
           />
         </View>
