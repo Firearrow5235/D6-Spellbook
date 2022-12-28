@@ -1,11 +1,11 @@
+import React, { FC, useState, useEffect } from 'react'
 import { StackScreenProps } from '@react-navigation/stack'
-import { FC, useState, useEffect } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { RouteParams } from '../../types'
 import Input from '../components/Input'
 import { containers } from '../styles/containers'
 
-type CalculatorProps = StackScreenProps<RouteParams, 'Spell Calculator'>
+type CalculatorProps = StackScreenProps<RouteParams, 'Spell calculator'>
 
 const styles = StyleSheet.create({
   sectionLabel: { paddingTop: '4px', paddingBottom: '4px', fontWeight: 'bold' },
@@ -84,9 +84,10 @@ const Calculator: FC<CalculatorProps> = () => {
       <View style={containers.content}>
         <Text style={{ textAlign: 'center' }}>Spell Difficulty Calculator</Text>
         <Text style={styles.sectionLabel}>Costs</Text>
-        {Object.entries(costs).map(([key, value]) => (
+        {Object.entries(costs).map(([key, value], index) => (
           <Input
             label={key}
+            key={index}
             value={value}
             setValue={handleChangeCosts(key)}
             keyboardType="numeric"
@@ -94,9 +95,10 @@ const Calculator: FC<CalculatorProps> = () => {
           />
         ))}
         <Text style={styles.sectionLabel}>Cost Reductions</Text>
-        {Object.entries(reductions).map(([key, value]) => (
+        {Object.entries(reductions).map(([key, value], index) => (
           <Input
             label={key}
+            key={index}
             value={value}
             setValue={handleChangeReductions(key)}
             keyboardType="numeric"

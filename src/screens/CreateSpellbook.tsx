@@ -7,7 +7,7 @@ import { containers } from '../styles/containers'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { v4 as uuidv4 } from 'uuid'
 
-type SpellbookProps = StackScreenProps<RouteParams, 'Create a Spellbook'>
+type SpellbookProps = StackScreenProps<RouteParams, 'Create a spellbook'>
 
 const CreateSpellbook: FC<SpellbookProps> = ({ navigation }) => {
   const [spellbook, setSpellbook] = useState({
