@@ -1,6 +1,6 @@
 import { StackScreenProps } from '@react-navigation/stack'
-import { FC, useState } from 'react'
-import { Button, StyleSheet, TextInput, View } from 'react-native'
+import React, { FC, useState } from 'react'
+import { Button, View } from 'react-native'
 import { RouteParams, Spellbook } from '../../types'
 import Input from '../components/Input'
 import { containers } from '../styles/containers'
@@ -9,17 +9,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 type SpellbookProps = StackScreenProps<RouteParams, 'Create a Spellbook'>
 
-const styles = StyleSheet.create({
-  input: {
-    padding: '4px',
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: '#aaa',
-    marginBottom: '8px',
-  },
-})
-
-const SpellbookForm: FC<SpellbookProps> = ({ navigation }) => {
+const CreateSpellbook: FC<SpellbookProps> = ({ navigation }) => {
   const [spellbook, setSpellbook] = useState({
     Name: '',
     Character: '',
@@ -46,6 +36,7 @@ const SpellbookForm: FC<SpellbookProps> = ({ navigation }) => {
     const id = uuidv4()
 
     const spellbookString = JSON.stringify({
+      id,
       name: spellbook.Name,
       character: spellbook.Character,
       coreAttribute: spellbook['Core Attribute'],
@@ -76,4 +67,4 @@ const SpellbookForm: FC<SpellbookProps> = ({ navigation }) => {
   )
 }
 
-export default SpellbookForm
+export default CreateSpellbook

@@ -1,9 +1,10 @@
 import React, { FC } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import { Spellbook } from '../../types'
 
 type SpellbookEntryProps = {
   spellbook: Spellbook
+  openSpellbook: () => void
 }
 
 const styles = StyleSheet.create({
@@ -29,18 +30,27 @@ const styles = StyleSheet.create({
   },
 })
 
-const SpellbookEntry: FC<SpellbookEntryProps> = ({ spellbook }) => {
+const SpellbookEntry: FC<SpellbookEntryProps> = ({
+  spellbook,
+  openSpellbook,
+}) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.valueWrapper}>
-        <Text style={styles.label}>Name</Text>
-        <Text style={styles.value}>{spellbook.name}</Text>
+    <TouchableHighlight
+      onPress={() => {
+        openSpellbook()
+      }}
+    >
+      <View style={styles.container}>
+        <View style={styles.valueWrapper}>
+          <Text style={styles.label}>Name</Text>
+          <Text style={styles.value}>{spellbook.name}</Text>
+        </View>
+        <View style={styles.valueWrapper}>
+          <Text style={styles.label}>Character</Text>
+          <Text style={styles.value}>{spellbook.character}</Text>
+        </View>
       </View>
-      <View style={styles.valueWrapper}>
-        <Text style={styles.label}>Character</Text>
-        <Text style={styles.value}>{spellbook.character}</Text>
-      </View>
-    </View>
+    </TouchableHighlight>
   )
 }
 
