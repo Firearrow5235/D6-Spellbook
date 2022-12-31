@@ -16,7 +16,10 @@
     }
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "**/*": [
+      "eslint --fix",
+      "prettier --write --ignore-unknown "
+    ]
   },
   "dependencies": {
     "@expo/webpack-config": "^0.17.2",

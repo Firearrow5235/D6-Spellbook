@@ -1,8 +1,9 @@
 export type RouteParams = {
   Spellbooks: undefined
   Spellbook: { spellbook: Spellbook }
-  'Create a Spellbook': undefined
-  'Spell Calculator': undefined
+  'Create a spellbook': undefined
+  'Create a spell': { spellbook: Spellbook }
+  'Spell calculator': undefined
 }
 
 export type Spellbook = {
@@ -10,4 +11,23 @@ export type Spellbook = {
   name: string
   character: string
   coreAttribute: string
+  spells: string[]
+}
+
+export type Spell = {
+  id: string
+  name: string
+  skill: string
+  targetNumber: number
+  spellTotal: number
+  effect: string
+  castingTime: string
+  range: string
+  duration: string
+  otherAspects: Aspect[]
+}
+
+export type Aspect = {
+  name: string
+  description: string
 }
