@@ -9,6 +9,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'nowrap',
+  },
+  wrapper: {
     marginBottom: '8px',
   },
 })
@@ -22,13 +24,15 @@ const Entry: FC<React.PropsWithChildren<EntryProps>> = ({
   onPress,
 }) => {
   return (
-    <TouchableHighlight
-      onPress={() => {
-        onPress()
-      }}
-    >
-      <View style={styles.container}>{children}</View>
-    </TouchableHighlight>
+    <View style={styles.wrapper}>
+      <TouchableHighlight
+        onPress={() => {
+          onPress()
+        }}
+      >
+        <View style={styles.container}>{children}</View>
+      </TouchableHighlight>
+    </View>
   )
 }
 
