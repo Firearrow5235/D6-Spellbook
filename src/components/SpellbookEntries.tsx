@@ -2,7 +2,8 @@ import React, { FC } from 'react'
 import { Text, View } from 'react-native'
 import { Spellbook } from '../../types'
 import { useSpellbooks } from '../hooks/useSpellbooks'
-import SpellbookEntry from './SpellbookEntry'
+import Entry from './Entry'
+import EntryValue from './EntryValue'
 
 type SpellbookEntriesProps = {
   openSpellbook: (spellbook: Spellbook) => () => void
@@ -18,11 +19,10 @@ const SpellbookEntries: FC<SpellbookEntriesProps> = ({ openSpellbook }) => {
         spellbooks.length > 0 &&
         spellbooks.map((spellbook, index) => {
           return (
-            <SpellbookEntry
-              key={index}
-              spellbook={spellbook}
-              openSpellbook={openSpellbook(spellbook)}
-            />
+            <Entry key={index} onPress={openSpellbook(spellbook)}>
+              <EntryValue label="Name" value={spellbook.name} />
+              <EntryValue label="Character" value={spellbook.character} />
+            </Entry>
           )
         })}
     </View>
