@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import {
   View,
   Text,
@@ -33,13 +33,17 @@ const Input: FC<InputProps> = ({
   const [localValue, setLocalValue] = useState(value)
 
   const handleBlur = () => {
-    if (localValue === '') setValue('0')
+    if (localValue === '' && numbersOnly) setValue('0')
     else setValue(localValue)
   }
 
   const handleChange = (newValue: string) => {
     setLocalValue(numbersOnly ? newValue.replace(/[^0-9]/g, '') : newValue)
   }
+
+  useEffect(() => {
+    setLocalValue(value)
+  }, [value])
 
   return (
     <View style={styles.container}>
@@ -74,7 +78,8 @@ const styles = StyleSheet.create({
     paddingBottom: '8px',
   },
   label: {
-    flex: 1,
+    flexGrow: 1,
+    width: '100%',
   },
   input: {
     padding: '4px',
@@ -82,5 +87,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: '#aaa',
     width: '100%',
+    flexShrink: 3,
   },
 })
