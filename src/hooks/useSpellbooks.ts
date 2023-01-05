@@ -10,23 +10,15 @@ export const useSpellbooks = (): [spellbooks: Spellbook[] | null] => {
 
     if (registryJson != null) {
       const registry: string[] = JSON.parse(registryJson)
-      const spellbooks = await Promise.all(
-        registry.map(async (entry) => {
-          const spellbookJson = await AsyncStorage.getItem(entry)
-          if (spellbookJson != null) {
-            const spellbook = JSON.parse(spellbookJson) as Spellbook
-            return spellbook
-          } else {
-            return null
-          }
-        })
+      const spellbooks: Spellbook[] = await AsyncStorage.multiGet(
+        registry
+      ).then((keyValuePairs) =>
+        keyValuePairs.flatMap((entry) =>
+          entry[1] !== null ? (JSON.parse(entry[1]) as Spellbook) : []
+        )
       )
 
-      const filteredSpellbooks = spellbooks.filter(
-        (value) => value !== null
-      ) as Spellbook[]
-
-      setSpellbooks(filteredSpellbooks)
+      setSpellbooks(spellbooks)
     } else setSpellbooks(null)
   }
 

@@ -6,10 +6,11 @@ export const useSpells = (spellbook: Spellbook): [Spell[] | null] => {
   const [spells, setSpells] = useState<Spell[] | null>(null)
 
   const getSpells = async (): Promise<void> => {
-    const spellValues = await AsyncStorage.multiGet(spellbook.spells)
-
-    const spells: Spell[] = spellValues.flatMap((keyValuePair) =>
-      keyValuePair[1] !== null ? (JSON.parse(keyValuePair[1]) as Spell) : []
+    const spells: Spell[] = await AsyncStorage.multiGet(spellbook.spells).then(
+      (keyValuePairs) =>
+        keyValuePairs.flatMap((entry) =>
+          entry[1] !== null ? (JSON.parse(entry[1]) as Spell) : []
+        )
     )
 
     setSpells(spells)
