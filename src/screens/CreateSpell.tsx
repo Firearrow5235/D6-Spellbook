@@ -1,5 +1,5 @@
 import { StackScreenProps } from '@react-navigation/stack'
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useState } from 'react'
 import { Button, View } from 'react-native'
 import { RouteParams, Spell, Spellbook } from '../../types'
 import Input from '../components/Input'
@@ -69,10 +69,6 @@ const CreateSpell: FC<CreateSpellProps> = ({ navigation, route }) => {
 
     navigation.navigate('Spellbook', { spellbook })
   }
-
-  useEffect(() => {
-    console.log({ newSpell })
-  }, [newSpell])
 
   return (
     <View style={containers.page}>
