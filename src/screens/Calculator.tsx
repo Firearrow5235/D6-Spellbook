@@ -1,19 +1,27 @@
 import React, { FC, useState, useEffect } from 'react'
-import { StackScreenProps } from '@react-navigation/stack'
-import { View, Text, StyleSheet } from 'react-native'
-import { RouteParams } from '../../types'
+import { View, Text, StyleSheet, Modal, ScrollView, Button } from 'react-native'
 import Input from '../components/Input'
-import { containers } from '../styles/containers'
-
-type CalculatorProps = StackScreenProps<RouteParams, 'Spell calculator'>
 
 const styles = StyleSheet.create({
+  container: {
+    maxHeight: '60%',
+    maxWidth: '300px',
+    backgroundColor: 'white',
+    padding: '8px',
+    borderRadius: 8,
+    overflow: 'hidden',
+  },
   sectionLabel: { paddingTop: '4px', paddingBottom: '4px', fontWeight: 'bold' },
 })
 
-const Calculator: FC<CalculatorProps> = () => {
-  const [spellValue, setSpellValue] = useState(0)
-  const [spellDifficulty, setSpellDifficulty] = useState(0)
+type CalculatorProps = {
+  visible: boolean
+  handleClose: (spellTotal: string, targetNumber: string) => () => void
+}
+
+const Calculator: FC<CalculatorProps> = ({ visible, handleClose }) => {
+  const [spellTotal, setSpellTotal] = useState(0)
+  const [targetNumber, setTargetNumber] = useState(0)
 
   const [costs, setCosts] = useState({
     Effect: '0',
@@ -72,47 +80,66 @@ const Calculator: FC<CalculatorProps> = () => {
       const spellValue = Math.max(0, totalCost - totalReductions)
       const spellDifficulty = Math.ceil(spellValue / 2)
 
-      setSpellValue(spellValue)
-      setSpellDifficulty(spellDifficulty)
+      setSpellTotal(spellValue)
+      setTargetNumber(spellDifficulty)
     }
 
     calculateTotals()
   }, [costs, reductions])
 
   return (
-    <View style={containers.page}>
-      <View style={containers.content}>
-        <Text style={{ textAlign: 'center' }}>Spell Difficulty Calculator</Text>
-        <Text style={styles.sectionLabel}>Costs</Text>
-        {Object.entries(costs).map(([key, value], index) => (
-          <Input
-            label={key}
-            key={index}
-            value={value}
-            setValue={handleChangeCosts(key)}
-            keyboardType="numeric"
-            numbersOnly
+    <Modal animationType="slide" transparent animated visible={visible}>
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          backgroundColor: 'rgba(0, 0, 0, 0.75)',
+          paddingTop: '80px',
+        }}
+      >
+        <ScrollView style={styles.container}>
+          <Text style={{ textAlign: 'center' }}>
+            Spell Difficulty Calculator
+          </Text>
+          <Text style={styles.sectionLabel}>Costs</Text>
+          {Object.entries(costs).map(([key, value], index) => (
+            <Input
+              label={key}
+              key={index}
+              value={value}
+              setValue={handleChangeCosts(key)}
+              keyboardType="numeric"
+              numbersOnly
+            />
+          ))}
+          <Text style={styles.sectionLabel}>Cost Reductions</Text>
+          {Object.entries(reductions).map(([key, value], index) => (
+            <Input
+              label={key}
+              key={index}
+              value={value}
+              setValue={handleChangeReductions(key)}
+              keyboardType="numeric"
+              numbersOnly
+            />
+          ))}
+          <Text style={{ ...styles.sectionLabel, textAlign: 'center' }}>
+            Spell Total: {spellTotal}
+          </Text>
+          <Text style={{ ...styles.sectionLabel, textAlign: 'center' }}>
+            Target Number: {targetNumber}
+          </Text>
+          <Button
+            title="Apply"
+            onPress={handleClose(
+              spellTotal.toString(),
+              targetNumber.toString()
+            )}
           />
-        ))}
-        <Text style={styles.sectionLabel}>Cost Reductions</Text>
-        {Object.entries(reductions).map(([key, value], index) => (
-          <Input
-            label={key}
-            key={index}
-            value={value}
-            setValue={handleChangeReductions(key)}
-            keyboardType="numeric"
-            numbersOnly
-          />
-        ))}
-        <Text style={{ ...styles.sectionLabel, textAlign: 'center' }}>
-          Spell Total: {spellValue}
-        </Text>
-        <Text style={{ ...styles.sectionLabel, textAlign: 'center' }}>
-          Spell Difficulty: {spellDifficulty}
-        </Text>
+        </ScrollView>
       </View>
-    </View>
+    </Modal>
   )
 }
 

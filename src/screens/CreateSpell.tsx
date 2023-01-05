@@ -1,15 +1,17 @@
 import { StackScreenProps } from '@react-navigation/stack'
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { Button, View } from 'react-native'
 import { RouteParams, Spell, Spellbook } from '../../types'
 import Input from '../components/Input'
 import { containers } from '../styles/containers'
 import { v4 as uuidv4 } from 'uuid'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import Calculator from './Calculator'
 
 type CreateSpellProps = StackScreenProps<RouteParams, 'Create a spell'>
 
 const CreateSpell: FC<CreateSpellProps> = ({ navigation, route }) => {
+  const [calculatorOpen, setCalculatorOpen] = useState(false)
   const [newSpell, setNewSpell] = useState({
     Name: '',
     Skill: '',
@@ -26,6 +28,16 @@ const CreateSpell: FC<CreateSpellProps> = ({ navigation, route }) => {
       ...newSpell,
       [key]: newValue,
     })
+  }
+
+  const handleClose = (spellTotal: string, targetNumber: string) => () => {
+    setNewSpell({
+      ...newSpell,
+      'Spell Total': spellTotal,
+      'Target Number': targetNumber,
+    })
+
+    setCalculatorOpen(false)
   }
 
   const createSpell = async () => {
@@ -58,6 +70,10 @@ const CreateSpell: FC<CreateSpellProps> = ({ navigation, route }) => {
     navigation.navigate('Spellbook', { spellbook })
   }
 
+  useEffect(() => {
+    console.log({ newSpell })
+  }, [newSpell])
+
   return (
     <View style={containers.page}>
       <View style={containers.content}>
@@ -71,10 +87,14 @@ const CreateSpell: FC<CreateSpellProps> = ({ navigation, route }) => {
           />
         ))}
         <View style={{ marginBottom: '8px' }}>
-          <Button title="Use Calculator" onPress={() => null} />
+          <Button
+            title="Use Calculator"
+            onPress={() => setCalculatorOpen(true)}
+          />
         </View>
         <Button title="Create" onPress={createSpell} />
       </View>
+      <Calculator visible={calculatorOpen} handleClose={handleClose} />
     </View>
   )
 }

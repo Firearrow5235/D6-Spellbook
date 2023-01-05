@@ -1,6 +1,5 @@
 import React from 'react'
 import 'react-native-gesture-handler'
-import Calculator from './src/screens/Calculator'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import Spellbooks from './src/screens/Spellbooks'
@@ -23,7 +22,6 @@ export default function App() {
         <Stack.Screen name="Spellbook" component={Spellbook} />
         <Stack.Screen name="Create a spellbook" component={CreateSpellbook} />
         <Stack.Screen name="Create a spell" component={CreateSpell} />
-        <Stack.Screen name="Spell calculator" component={Calculator} />
       </Stack.Navigator>
     </NavigationContainer>
   )

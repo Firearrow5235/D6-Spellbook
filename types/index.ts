@@ -3,7 +3,6 @@ export type RouteParams = {
   Spellbook: { spellbook: Spellbook }
   'Create a spellbook': undefined
   'Create a spell': { spellbook: Spellbook }
-  'Spell calculator': undefined
 }
 
 export type Spellbook = {
