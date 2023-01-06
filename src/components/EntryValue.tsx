@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, View, Text, FlexAlignType } from 'react-native'
 
 const styles = StyleSheet.create({
   valueWrapper: {
@@ -16,15 +16,24 @@ const styles = StyleSheet.create({
 })
 
 type EntryValueProps = {
-  label: string
+  label?: string
   value: string
+  alignment?: 'auto' | FlexAlignType
+  flexGrow?: number
 }
 
-const EntryValue: FC<EntryValueProps> = ({ label, value }) => {
+const EntryValue: FC<EntryValueProps> = ({
+  label,
+  value,
+  alignment = 'auto',
+  flexGrow = 1,
+}) => {
   return (
-    <View style={styles.valueWrapper}>
-      <Text style={styles.label}>{label}</Text>
-      <Text style={styles.value}>{value}</Text>
+    <View style={{ ...styles.valueWrapper, flexGrow }}>
+      {label && (
+        <Text style={{ ...styles.label, alignSelf: alignment }}>{label}</Text>
+      )}
+      <Text style={{ ...styles.value, alignSelf: alignment }}>{value}</Text>
     </View>
   )
 }

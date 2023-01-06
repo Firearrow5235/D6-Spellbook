@@ -20,8 +20,12 @@ const SpellbookEntries: FC<SpellbookEntriesProps> = ({ openSpellbook }) => {
         spellbooks.map((spellbook, index) => {
           return (
             <Entry key={index} onPress={openSpellbook(spellbook)}>
-              <EntryValue label="Name" value={spellbook.name} />
-              <EntryValue label="Character" value={spellbook.character} />
+              <EntryValue label="Name" value={spellbook.name} flexGrow={2} />
+              <EntryValue
+                label="Character"
+                value={spellbook.character}
+                alignment="center"
+              />
             </Entry>
           )
         })}

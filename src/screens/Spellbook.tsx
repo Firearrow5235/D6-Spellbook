@@ -15,9 +15,9 @@ const Spellbook: FC<SpellbookProps> = ({ route, navigation }) => {
   return (
     <View style={containers.page}>
       <View style={containers.content}>
-        <Text style={{ marginBottom: '4px' }}>
-          {route.params.spellbook.name}
-        </Text>
+        <Entry>
+          <EntryValue value={route.params.spellbook.name} />
+        </Entry>
         {!spells && <Text>Loading...</Text>}
         {spells &&
           spells.map((spell, index) => (
@@ -27,10 +27,11 @@ const Spellbook: FC<SpellbookProps> = ({ route, navigation }) => {
                 console.log('Navigate to spell')
               }}
             >
-              <EntryValue label="Name" value={spell.name} />
+              <EntryValue label="Name" value={spell.name} flexGrow={2} />
               <EntryValue
                 label="Target number"
                 value={`${spell.targetNumber}`}
+                alignment="center"
               />
             </Entry>
           ))}

@@ -6,7 +6,7 @@ import Input from '../components/Input'
 import { containers } from '../styles/containers'
 import { v4 as uuidv4 } from 'uuid'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import Calculator from './Calculator'
+import Calculator from '../components/Calculator'
 
 type CreateSpellProps = StackScreenProps<RouteParams, 'Create a spell'>
 

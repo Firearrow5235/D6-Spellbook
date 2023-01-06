@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 })
 
 type EntryProps = {
-  onPress: () => void
+  onPress?: () => void
 }
 
 const Entry: FC<React.PropsWithChildren<EntryProps>> = ({
@@ -25,11 +25,7 @@ const Entry: FC<React.PropsWithChildren<EntryProps>> = ({
 }) => {
   return (
     <View style={styles.wrapper}>
-      <TouchableHighlight
-        onPress={() => {
-          onPress()
-        }}
-      >
+      <TouchableHighlight onPress={onPress}>
         <View style={styles.container}>{children}</View>
       </TouchableHighlight>
     </View>
