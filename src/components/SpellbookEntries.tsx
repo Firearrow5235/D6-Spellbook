@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Text, View } from 'react-native'
-import { Spellbook } from '../../types'
+import { Spellbook } from '../types'
 import { useSpellbooks } from '../hooks/useSpellbooks'
 import Entry from './Entry'
 import EntryValue from './EntryValue'

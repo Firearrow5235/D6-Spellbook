@@ -1,7 +1,7 @@
 import { StackScreenProps } from '@react-navigation/stack'
 import React, { FC } from 'react'
 import { Text, View, Button } from 'react-native'
-import { RouteParams } from '../../types'
+import { RouteParams } from '../types'
 import Entry from '../components/Entry'
 import EntryValue from '../components/EntryValue'
 import { useSpells } from '../hooks/useSpells'

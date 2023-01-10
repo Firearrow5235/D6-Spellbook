@@ -1,7 +1,7 @@
 import { StackScreenProps } from '@react-navigation/stack'
 import React, { FC, useState } from 'react'
 import { Button, View } from 'react-native'
-import { RouteParams, Spellbook } from '../../types'
+import { RouteParams, Spellbook } from '../types'
 import Input from '../components/Input'
 import { containers } from '../styles/containers'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -34,6 +34,7 @@ const CreateSpellbook: FC<SpellbookProps> = ({ navigation }) => {
     }
 
     const id = uuidv4()
+    const now = new Date(Date.now())
 
     const spellbookString = JSON.stringify({
       id,
@@ -41,6 +42,8 @@ const CreateSpellbook: FC<SpellbookProps> = ({ navigation }) => {
       character: spellbook.Character,
       coreAttribute: spellbook['Core Attribute'],
       spells: [],
+      createdAt: now.toISOString(),
+      updatedAt: now.toISOString(),
     } as Spellbook)
     const spellbooksString = JSON.stringify([...spellbooks, id])
 

@@ -11,6 +11,8 @@ export type Spellbook = {
   character: string
   coreAttribute: string
   spells: string[]
+  createdAt: string
+  updatedAt: string
 }
 
 export type Spell = {

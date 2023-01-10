@@ -1,7 +1,7 @@
 import { StackScreenProps } from '@react-navigation/stack'
 import React, { FC, useState } from 'react'
 import { Button, View } from 'react-native'
-import { RouteParams, Spell, Spellbook } from '../../types'
+import { RouteParams, Spell, Spellbook } from '../types'
 import Input from '../components/Input'
 import { containers } from '../styles/containers'
 import { v4 as uuidv4 } from 'uuid'
