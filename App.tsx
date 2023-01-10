@@ -7,6 +7,7 @@ import { RouteParams } from './src/types'
 import CreateSpellbook from './src/screens/CreateSpellbook'
 import Spellbook from './src/screens/Spellbook'
 import CreateSpell from './src/screens/CreateSpell'
+import EditSpellbook from './src/screens/EditSpellbook'
 
 const Stack = createStackNavigator<RouteParams>()
 
@@ -21,6 +22,7 @@ export default function App() {
         />
         <Stack.Screen name="Spellbook" component={Spellbook} />
         <Stack.Screen name="Create a spellbook" component={CreateSpellbook} />
+        <Stack.Screen name="Edit spellbook" component={EditSpellbook} />
         <Stack.Screen name="Create a spell" component={CreateSpell} />
       </Stack.Navigator>
     </NavigationContainer>

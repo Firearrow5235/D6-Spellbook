@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
   valueWrapper: {
     flex: 1,
     flexDirection: 'column',
+    justifyContent: 'center',
   },
   label: {
     color: '#999',

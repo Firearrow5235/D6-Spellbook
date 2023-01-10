@@ -17,6 +17,14 @@ const Spellbook: FC<SpellbookProps> = ({ route, navigation }) => {
       <View style={containers.content}>
         <Entry>
           <EntryValue value={route.params.spellbook.name} />
+          <Button
+            title="Edit"
+            onPress={() => {
+              navigation.navigate('Edit spellbook', {
+                spellbook: route.params.spellbook,
+              })
+            }}
+          />
         </Entry>
         {!spells && <Text>Loading...</Text>}
         {spells &&

@@ -1,15 +1,15 @@
 import { StackScreenProps } from '@react-navigation/stack'
 import React, { FC, useState } from 'react'
-import { Button, View } from 'react-native'
+import { View } from 'react-native'
 import { RouteParams, Spellbook } from '../types'
-import Input from '../components/Input'
 import { containers } from '../styles/containers'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { v4 as uuidv4 } from 'uuid'
+import SpellbookForm from '../components/SpellbookForm'
 
-type SpellbookProps = StackScreenProps<RouteParams, 'Create a spellbook'>
+type CreateSpellbookProps = StackScreenProps<RouteParams, 'Create a spellbook'>
 
-const CreateSpellbook: FC<SpellbookProps> = ({ navigation }) => {
+const CreateSpellbook: FC<CreateSpellbookProps> = ({ navigation }) => {
   const [spellbook, setSpellbook] = useState({
     Name: '',
     Character: '',
@@ -55,18 +55,11 @@ const CreateSpellbook: FC<SpellbookProps> = ({ navigation }) => {
 
   return (
     <View style={containers.page}>
-      <View style={containers.content}>
-        {Object.entries(spellbook).map(([key, value]) => (
-          <Input
-            key={key}
-            value={value}
-            setValue={handleChange(key)}
-            placeholder={key}
-            labelHidden
-          />
-        ))}
-        <Button title="Create" onPress={createSpellbook} />
-      </View>
+      <SpellbookForm
+        spellbook={spellbook}
+        handleChange={handleChange}
+        spellbookActions={[{ label: 'Create', action: createSpellbook }]}
+      />
     </View>
   )
 }
