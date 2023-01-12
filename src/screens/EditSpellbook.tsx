@@ -1,10 +1,10 @@
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { StackScreenProps } from '@react-navigation/stack'
 import React, { FC, useState } from 'react'
 import { View } from 'react-native'
 import { containers } from '../styles/containers'
-import { RouteParams, Spellbook } from '../types'
+import { RouteParams } from '../types'
 import SpellbookForm from '../components/SpellbookForm'
+import { deleteSpellbook, editSpellbook } from '../lib/spellbook'
 
 type EditSpellbookProps = StackScreenProps<RouteParams, 'Edit spellbook'>
 
@@ -22,23 +22,19 @@ const EditSpellbook: FC<EditSpellbookProps> = ({ route, navigation }) => {
     })
   }
 
-  const editSpellbook = async () => {
-    const now = new Date(Date.now())
-
-    const updatedSpellbook = {
-      ...route.params.spellbook,
-      name: spellbook.Name,
-      character: spellbook.Character,
-      coreAttribute: spellbook['Core Attribute'],
-      updatedAt: now.toISOString(),
-    } as Spellbook
-
-    await AsyncStorage.setItem(
-      route.params.spellbook.id,
-      JSON.stringify(updatedSpellbook)
+  const handleEdit = async () => {
+    const updatedSpellbook = await editSpellbook(
+      route.params.spellbook,
+      spellbook
     )
 
     navigation.navigate('Spellbook', { spellbook: updatedSpellbook })
+  }
+
+  const handleDelete = async () => {
+    const updatedRegistry = await deleteSpellbook(route.params.spellbook)
+
+    navigation.navigate('Spellbooks', { registry: updatedRegistry })
   }
 
   return (
@@ -46,7 +42,10 @@ const EditSpellbook: FC<EditSpellbookProps> = ({ route, navigation }) => {
       <SpellbookForm
         spellbook={spellbook}
         handleChange={handleChange}
-        spellbookActions={[{ label: 'Update', action: editSpellbook }]}
+        spellbookActions={[
+          { label: 'Update', action: handleEdit },
+          { label: 'Delete', action: handleDelete },
+        ]}
       />
     </View>
   )

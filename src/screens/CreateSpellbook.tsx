@@ -1,11 +1,10 @@
 import { StackScreenProps } from '@react-navigation/stack'
 import React, { FC, useState } from 'react'
 import { View } from 'react-native'
-import { RouteParams, Spellbook } from '../types'
+import { RouteParams, SpellbookInput } from '../types'
 import { containers } from '../styles/containers'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import { v4 as uuidv4 } from 'uuid'
 import SpellbookForm from '../components/SpellbookForm'
+import { createSpellbook } from '../lib/spellbook'
 
 type CreateSpellbookProps = StackScreenProps<RouteParams, 'Create a spellbook'>
 
@@ -14,7 +13,7 @@ const CreateSpellbook: FC<CreateSpellbookProps> = ({ navigation }) => {
     Name: '',
     Character: '',
     'Core Attribute': '',
-  })
+  } as SpellbookInput)
 
   const handleChange = (key: string) => (newValue: string) => {
     setSpellbook({
@@ -23,34 +22,10 @@ const CreateSpellbook: FC<CreateSpellbookProps> = ({ navigation }) => {
     })
   }
 
-  const createSpellbook = async () => {
-    let spellbooks: string[]
-    const spellbooksJson = await AsyncStorage.getItem('Spellbooks')
+  const handleCreate = async () => {
+    const { updatedRegistry } = await createSpellbook(spellbook)
 
-    if (spellbooksJson != null) {
-      spellbooks = JSON.parse(spellbooksJson)
-    } else {
-      spellbooks = []
-    }
-
-    const id = uuidv4()
-    const now = new Date(Date.now())
-
-    const spellbookString = JSON.stringify({
-      id,
-      name: spellbook.Name,
-      character: spellbook.Character,
-      coreAttribute: spellbook['Core Attribute'],
-      spells: [],
-      createdAt: now.toISOString(),
-      updatedAt: now.toISOString(),
-    } as Spellbook)
-    const spellbooksString = JSON.stringify([...spellbooks, id])
-
-    await AsyncStorage.setItem('Spellbooks', spellbooksString)
-    await AsyncStorage.setItem(id, spellbookString)
-
-    navigation.navigate('Spellbooks')
+    navigation.navigate('Spellbooks', { registry: updatedRegistry })
   }
 
   return (
@@ -58,7 +33,7 @@ const CreateSpellbook: FC<CreateSpellbookProps> = ({ navigation }) => {
       <SpellbookForm
         spellbook={spellbook}
         handleChange={handleChange}
-        spellbookActions={[{ label: 'Create', action: createSpellbook }]}
+        spellbookActions={[{ label: 'Create', action: handleCreate }]}
       />
     </View>
   )

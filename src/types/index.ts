@@ -1,5 +1,5 @@
 export type RouteParams = {
-  Spellbooks: undefined
+  Spellbooks: { registry: string[] }
   Spellbook: { spellbook: Spellbook }
   'Create a spellbook': undefined
   'Edit spellbook': { spellbook: Spellbook }
@@ -14,6 +14,12 @@ export type Spellbook = {
   spells: string[]
   createdAt: string
   updatedAt: string
+}
+
+export type SpellbookInput = {
+  Name: string
+  Character: string
+  'Core Attribute': string
 }
 
 export type Spell = {

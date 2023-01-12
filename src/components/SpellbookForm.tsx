@@ -26,11 +26,17 @@ const SpellbookForm: FC<SpellbookFormProps> = ({
         />
       ))}
       {spellbookActions.map((spellbookAction, index) => (
-        <Button
+        <View
           key={index}
-          title={spellbookAction.label}
-          onPress={spellbookAction.action}
-        />
+          style={{
+            marginBottom: index === spellbookActions.length - 1 ? '0px' : '8px',
+          }}
+        >
+          <Button
+            title={spellbookAction.label}
+            onPress={spellbookAction.action}
+          />
+        </View>
       ))}
     </View>
   )

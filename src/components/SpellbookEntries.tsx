@@ -4,14 +4,17 @@ import { Spellbook } from '../types'
 import { useSpellbooks } from '../hooks/useSpellbooks'
 import Entry from './Entry'
 import EntryValue from './EntryValue'
+import { getRegistry } from '../lib/spellbook'
 
 type SpellbookEntriesProps = {
+  spellbooks: Spellbook[]
   openSpellbook: (spellbook: Spellbook) => () => void
 }
 
-const SpellbookEntries: FC<SpellbookEntriesProps> = ({ openSpellbook }) => {
-  const [spellbooks] = useSpellbooks()
-
+const SpellbookEntries: FC<SpellbookEntriesProps> = ({
+  spellbooks,
+  openSpellbook,
+}) => {
   return (
     <View>
       {!spellbooks && <Text>Loading...</Text>}
