@@ -1,10 +1,10 @@
 import React, { FC, useState, useEffect } from 'react'
 import { View, Text, StyleSheet, Modal, ScrollView, Button } from 'react-native'
-import Input from '../components/Input'
+import Input from './Input'
 
 const styles = StyleSheet.create({
   container: {
-    maxHeight: '60%',
+    maxHeight: '90%',
     maxWidth: '300px',
     backgroundColor: 'white',
     padding: '8px',
@@ -91,11 +91,13 @@ const Calculator: FC<CalculatorProps> = ({ visible, handleClose }) => {
     <Modal animationType="slide" transparent animated visible={visible}>
       <View
         style={{
+          maxHeight: '100%',
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'center',
+          alignContent: 'flex-start',
           backgroundColor: 'rgba(0, 0, 0, 0.75)',
-          paddingTop: '80px',
+          paddingTop: '10%',
         }}
       >
         <ScrollView style={styles.container}>

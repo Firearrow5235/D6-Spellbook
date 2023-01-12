@@ -16,6 +16,7 @@ export const containers = StyleSheet.create({
     borderRadius: 8,
     flexDirection: 'column',
     backgroundColor: '#fff',
-    width: '300px',
+    width: '360px',
+    maxWidth: '100%',
   },
 })

@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useEffect, useState } from 'react'
-import { Spell, Spellbook } from '../../types'
+import { Spell, Spellbook } from '../types'
 
 export const useSpells = (spellbook: Spellbook): [Spell[] | null] => {
   const [spells, setSpells] = useState<Spell[] | null>(null)
