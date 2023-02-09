@@ -10,6 +10,7 @@ import CreateSpell from './src/screens/CreateSpell'
 import EditSpellbook from './src/screens/EditSpellbook'
 import { useRegistry } from './src/hooks/useRegistry'
 import { View } from 'react-native'
+import EditSpell from './src/screens/EditSpell'
 
 const Stack = createStackNavigator<RouteParams>()
 
@@ -33,6 +34,7 @@ export default function App() {
         <Stack.Screen name="Create a spellbook" component={CreateSpellbook} />
         <Stack.Screen name="Edit spellbook" component={EditSpellbook} />
         <Stack.Screen name="Create a spell" component={CreateSpell} />
+        <Stack.Screen name="Edit spell" component={EditSpell} />
       </Stack.Navigator>
     </NavigationContainer>
   )
