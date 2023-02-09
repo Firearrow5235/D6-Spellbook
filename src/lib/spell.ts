@@ -27,14 +27,14 @@ export const createSpell = async (
   }
 
   await AsyncStorage.setItem(id, JSON.stringify(spell))
-  await AsyncStorage.setItem(spellbook.id, JSON.stringify(spellbook))
+  await AsyncStorage.setItem(spellbook.id, JSON.stringify(updatedSpellbook))
 
   return updatedSpellbook
 }
 
 export const updateSpell = async (spellInput: SpellInput, spell: Spell) => {
   const updatedSpell: Spell = {
-    id: spell.id,
+    ...spell,
     name: spellInput.Name,
     skill: spellInput.Skill,
     spellTotal: parseInt(spellInput['Spell Total']),
