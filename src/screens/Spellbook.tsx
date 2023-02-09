@@ -32,7 +32,10 @@ const Spellbook: FC<SpellbookProps> = ({ route, navigation }) => {
             <Entry
               key={index}
               onPress={() => {
-                console.log('Navigate to spell')
+                navigation.navigate('Edit spell', {
+                  spellbook: route.params.spellbook,
+                  spell,
+                })
               }}
             >
               <EntryValue label="Name" value={spell.name} flexGrow={2} />

@@ -1,25 +1,25 @@
 import { StackScreenProps } from '@react-navigation/stack'
 import React, { FC, useState } from 'react'
 import { View } from 'react-native'
-import { RouteParams, SpellInput } from '../types'
-import { containers } from '../styles/containers'
 import Calculator from '../components/Calculator'
 import SpellForm from '../components/SpellForm'
-import { createSpell } from '../lib/spell'
+import { deleteSpell, updateSpell } from '../lib/spell'
+import { containers } from '../styles/containers'
+import { RouteParams, SpellInput } from '../types'
 
-type CreateSpellProps = StackScreenProps<RouteParams, 'Create a spell'>
+type EditSpellProps = StackScreenProps<RouteParams, 'Edit spell'>
 
-const CreateSpell: FC<CreateSpellProps> = ({ navigation, route }) => {
+const EditSpell: FC<EditSpellProps> = ({ route, navigation }) => {
   const [calculatorOpen, setCalculatorOpen] = useState(false)
   const [spellInput, setSpellInput] = useState({
-    Name: '',
-    Skill: '',
-    'Spell Total': '',
-    'Target Number': '',
-    Effect: '',
-    'Casting Time': '',
-    Range: '',
-    Duration: '',
+    Name: route.params.spell.name,
+    Skill: route.params.spell.skill,
+    'Spell Total': `${route.params.spell.spellTotal}`,
+    'Target Number': `${route.params.spell.targetNumber}`,
+    Effect: route.params.spell.effect,
+    'Casting Time': route.params.spell.castingTime,
+    Range: route.params.spell.range,
+    Duration: route.params.spell.duration,
   } as SpellInput)
 
   const handleChange = (key: string) => (newValue: string) => {
@@ -43,9 +43,15 @@ const CreateSpell: FC<CreateSpellProps> = ({ navigation, route }) => {
     setCalculatorOpen(false)
   }
 
-  const handleCreate = async () => {
-    const updatedSpellbook = await createSpell(
-      spellInput,
+  const handleUpdate = async () => {
+    await updateSpell(spellInput, route.params.spell)
+
+    navigation.navigate('Spellbook', { spellbook: route.params.spellbook })
+  }
+
+  const handleDelete = async () => {
+    const updatedSpellbook = await deleteSpell(
+      route.params.spell.id,
       route.params.spellbook
     )
 
@@ -59,7 +65,8 @@ const CreateSpell: FC<CreateSpellProps> = ({ navigation, route }) => {
         handleChange={handleChange}
         spellActions={[
           { label: 'Use Calculator', action: handleOpen },
-          { label: 'Create', action: handleCreate },
+          { label: 'Update', action: handleUpdate },
+          { label: 'Delete', action: handleDelete },
         ]}
       />
       <Calculator visible={calculatorOpen} handleClose={handleClose} />
@@ -67,4 +74,4 @@ const CreateSpell: FC<CreateSpellProps> = ({ navigation, route }) => {
   )
 }
 
-export default CreateSpell
+export default EditSpell
